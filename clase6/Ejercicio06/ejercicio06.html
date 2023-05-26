@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ejercicio 6</title>
+  <link rel="stylesheet" type="text/css" href="estilos.css">
+</head>
+<body>
+  <h1>Mensajes de Presentación</h1>
+
+  <ul id="mensajes-lista"></ul>
+
+  <script src="ejercicio-6.js"></script>
+  <script>
+    // Obtener la referencia al elemento <ul> donde se mostrarán los mensajes
+    var mensajesLista = document.getElementById("mensajes-lista");
+
+    // Recorrer los mensajes de presentación y agregar cada uno como un elemento <li> en la lista
+    mensajesDePresentacion.forEach(function(mensaje) {
+      var li = document.createElement("li");
+      li.textContent = mensaje;
+      mensajesLista.appendChild(li);
+    });
+  </script>
+</body>
+</html>

@@ -1,6 +1,14 @@
-
+/*////clase 2*/
   h1 {color: orange;
 background: green;}
+  
+  .container-nav {
+  display: flex;
+  padding: 10px;
+  height: 50px;
+  background-color: yellow;
+}
+
 body {
   color: red;
   font-family: helvetica;

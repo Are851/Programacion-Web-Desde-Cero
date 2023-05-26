@@ -1,0 +1,17 @@
+
+  h1 {color: orange;
+background: green;}
+body {
+  color: blue;
+  font-family: helvetica;
+  background: blue;
+  text-align: center;
+  font-size: 50px;
+  margin:10px;
+}
+p {
+    font-size: 14px;
+    color: green;
+  font-family: times new roman;
+  background: whitesmoke;
+}

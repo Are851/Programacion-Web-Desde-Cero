@@ -1,0 +1,16 @@
+body {
+    background-color: violet;
+    transition: background-color 0.5s ease;
+}
+
+@media (max-width: 600px) {
+    body {
+        background-color: lightblue;
+    }
+}
+
+@media (max-width: 400px) {
+    body {
+        background-color: lightcoral;
+    }
+}
