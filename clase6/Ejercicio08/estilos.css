@@ -1,0 +1,39 @@
+    #form-container {
+      text-align: center;
+    }
+
+    .input-container {
+      margin-bottom: 10px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    input:valid,
+    select:valid,
+    textarea:valid {
+      border: 1px solid black;
+    }
+
+    input:invalid,
+    select:invalid,
+    textarea:invalid {
+      border: 1px solid red;
+    }
+
+    .error-message {
+      color: red;
+      font-size: 12px;
+    }
+
+    table {
+      margin-top: 20px;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      padding: 5px;
+      border: 1px solid black;
+    }

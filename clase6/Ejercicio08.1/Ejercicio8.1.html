@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+/* Estilos para el cuerpo de la página */
+body {
+  background-color: orange;
+}
+    #form-container {
+      text-align: center;
+    }
+
+    .input-container {
+      margin-bottom: 10px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    input:valid,
+    select:valid,
+    textarea:valid {
+      border: 1px solid black;
+    }
+
+    input:invalid,
+    select:invalid,
+    textarea:invalid {
+      border: 1px solid red;
+    }
+
+    .error-message {
+      color: red;
+      font-size: 12px;
+    }
+
+    table {
+      margin-top: 20px;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      padding: 5px;
+      border: 1px solid black;
+    }
+  </style>
+</head>
+<body>
+  <div id="form-container">
+    <form id="employee-form">
+      <div class="input-container">
+        <label for="email">Correo electrónico:</label>
+        <input type="email" id="email" required>
+        <div class="error-message" id="email-error"></div>
+      </div>
+
+      <div class="input-container">
+        <label for="age">Edad:</label>
+        <input type="number" id="age" required min="1">
+        <div class="error-message" id="age-error"></div>
+      </div>
+
+      <div class="input-container">
+        <label for="employee-type">Tipo de empleado:</label>
+        <select id="employee-type" required>
+          <option value="">Seleccionar...</option>
+          <option value="Vendedor">Vendedor</option>
+          <option value="Encargado de turno">Encargado de turno</option>
+          <option value="Supervisor general">Supervisor general</option>
+        </select>
+        <div class="error-message" id="employee-type-error"></div>
+      </div>
+
+      <div id="sales-container" class="input-container hidden">
+        <label for="sales">Cantidad de ventas:</label>
+        <input type="number" id="sales" min="1">
+        <div class="error-message" id="sales-error"></div>
+        <label for="total-amount">Monto total vendido:</label>
+        <input type="number" id="total-amount" min="0" step="0.01">
+        <div class="error-message" id="total-amount-error"></div>
+      </div>
+
+      <div id="employees-container" class="input-container hidden">
+        <label for="employee-count">Cantidad de empleados a cargo:</label>
+        <input type="number" id="employee-count" min="5">
+        <div class="error-message" id="employee-count-error"></div>
+      </div>
+
+      <div id="locations-container" class="input-container hidden">
+        <label for="location-count">Cantidad de locales administrados:</label>
+        <input type="number" id="location-count" min="2">
+        <div class="error-message" id="location-count-error"></div>
+        <label for="performance-description">Descripción del desempeño general:</label>
+        <textarea id="performance-description" rows="4"></textarea>
+        <div class="error-message" id="performance-description-error"></div>
+      </div>
+
+      <fieldset class="input-container">
+        <legend>Turno:</legend>
+        <div>
+          <input type="radio" id="morning-shift" name="shift" value="morning">
+          <label for="morning-shift">Mañana</label>
+        </div>
+        <div>
+          <input type="radio" id="afternoon-shift" name="shift" value="afternoon">
+          <label for="afternoon-shift">Tarde</label>
+        </div>
+        <div>
+          <input type="radio" id="night-shift" name="shift" value="night">
+          <label for="night-shift">Noche</label>
+        </div>
+      </fieldset>
+
+      <button type="submit">Enviar</button>
+    </form>
+
+    <div id="result-container" class="hidden">
+      <h2>Información del empleado:</h2>
+      <table>
+        <tr>
+          <th>Correo electrónico</th>
+          <td id="result-email"></td>
+        </tr>
+        <tr>
+          <th>Edad</th>
+          <td id="result-age"></td>
+        </tr>
+        <tr>
+          <th>Tipo de empleado</th>
+          <td id="result-employee-type"></td>
+        </tr>
+        <tr id="result-sales-row" class="hidden">
+          <th>Cantidad de ventas</th>
+          <td id="result-sales"></td>
+        </tr>
+        <tr id="result-total-amount-row" class="hidden">
+          <th>Monto total vendido</th>
+          <td id="result-total-amount"></td>
+        </tr>
+        <tr id="result-employee-count-row" class="hidden">
+          <th>Cantidad de empleados a cargo</th>
+          <td id="result-employee-count"></td>
+        </tr>
+        <tr id="result-location-count-row" class="hidden">
+          <th>Cantidad de locales administrados</th>
+          <td id="result-location-count"></td>
+        </tr>
+        <tr id="result-performance-description-row" class="hidden">
+          <th>Descripción del desempeño general</th>
+          <td id="result-performance-description"></td>
+        </tr>
+        <tr>
+          <th>Turno</th>
+          <td id="result-shift"></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const employeeTypeSelect = document.getElementById('employee-type');
+      const salesContainer = document.getElementById('sales-container');
+      const employeeCountContainer = document.getElementById('employees-container');
+      const locationCountContainer = document.getElementById('locations-container');
+
+      employeeTypeSelect.addEventListener('change', function() {
+        if (employeeTypeSelect.value === 'Vendedor') {
+          salesContainer.classList.remove('hidden');
+          employeeCountContainer.classList.add('hidden');
+          locationCountContainer.classList.add('hidden');
+        } else if (employeeTypeSelect.value === 'Encargado de turno') {
+          salesContainer.classList.add('hidden');
+          employeeCountContainer.classList.remove('hidden');
+          locationCountContainer.classList.add('hidden');
+        } else if (employeeTypeSelect.value === 'Supervisor general') {
+          salesContainer.classList.add('hidden');
+          employeeCountContainer.classList.add('hidden');
+          locationCountContainer.classList.remove('hidden');
+        } else {
+          salesContainer.classList.add('hidden');
+          employeeCountContainer.classList.add('hidden');
+          locationCountContainer.classList.add('hidden');
+        }
+      });
+
+      const form = document.getElementById('employee-form');
+      form.addEventListener('submit', function(event) {
+        event.preventDefault();
+        if (validateForm()) {
+          displayResult();
+        }
+      });
+
+      function validateForm() {
+        const emailInput = document.getElementById('email');
+        const ageInput = document.getElementById('age');
+        const employeeTypeInput = document.getElementById('employee-type');
+        const salesInput = document.getElementById('sales');
+        const totalAmountInput = document.getElementById('total-amount');
+        const employeeCountInput = document.getElementById('employee-count');
+        const locationCountInput = document.getElementById('location-count');
+        const performanceDescriptionInput = document.getElementById('performance-description');
+        const emailError = document.getElementById('email-error');
+        const ageError = document.getElementById('age-error');
+        const employeeTypeError = document.getElementById('employee-type-error');
+        const salesError = document.getElementById('sales-error');
+        const totalAmountError = document.getElementById('total-amount-error');
+        const employeeCountError = document.getElementById('employee-count-error');
+        const locationCountError = document.getElementById('location-count-error');
+        const performanceDescriptionError = document.getElementById('performance-description-error');
+        let valid = true;
+
+        if (!emailInput.checkValidity()) {
+          emailError.textContent = 'Por favor, ingresa un correo electrónico válido.';
+          valid = false;
+        } else {
+          emailError.textContent = '';
+        }
+
+        if (!ageInput.checkValidity()) {
+          ageError.textContent = 'Por favor, ingresa una edad válida.';
+          valid = false;
+        } else {
+          ageError.textContent = '';
+        }
+
+        if (!employeeTypeInput.checkValidity()) {
+          employeeTypeError.textContent = 'Por favor, selecciona un tipo de empleado.';
+          valid = false;
+        } else {
+          employeeTypeError.textContent = '';
+        }
+
+        if (employeeTypeInput.value === 'Vendedor') {
+          if (!salesInput.checkValidity()) {
+            salesError.textContent = 'Por favor, ingresa una cantidad de ventas válida.';
+            valid = false;
+          } else {
+            salesError.textContent = '';
+          }
+
+          if (!totalAmountInput.checkValidity()) {
+            totalAmountError.textContent = 'Por favor, ingresa un monto total vendido válido.';
+            valid = false;
+          } else {
+            totalAmountError.textContent = '';
+          }
+        }
+
+        if (employeeTypeInput.value === 'Encargado de turno') {
+          if (!employeeCountInput.checkValidity()) {
+            employeeCountError.textContent = 'Por favor, ingresa una cantidad de empleados válida.';
+            valid = false;
+          } else {
+            employeeCountError.textContent = '';
+          }
+        }
+
+        if (employeeTypeInput.value === 'Supervisor general') {
+          if (!locationCountInput.checkValidity()) {
+            locationCountError.textContent = 'Por favor, ingresa una cantidad de locales válida.';
+            valid = false;
+          } else {
+            locationCountError.textContent = '';
+          }
+
+          if (!performanceDescriptionInput.checkValidity()) {
+            performanceDescriptionError.textContent = 'Por favor, ingresa una descripción del desempeño.';
+            valid = false;
+          } else {
+            performanceDescriptionError.textContent = '';
+          }
+        }
+
+        return valid;
+      }
+
+      function displayResult() {
+        const email = document.getElementById('email').value;
+        const age = document.getElementById('age').value;
+        const employeeType = document.getElementById('employee-type').value;
+        const sales = document.getElementById('sales').value;
+        const totalAmount = document.getElementById('total-amount').value;
+        const employeeCount = document.getElementById('employee-count').value;
+        const locationCount = document.getElementById('location-count').value;
+        const performanceDescription = document.getElementById('performance-description').value;
+        const shiftRadios = document.getElementsByName('shift');
+        let shift = '';
+        for (const radio of shiftRadios) {
+          if (radio.checked) {
+            shift = radio.value;
+            break;
+          }
+        }
+
+        document.getElementById('result-email').textContent = email;
+        document.getElementById('result-age').textContent = age;
+        document.getElementById('result-employee-type').textContent = employeeType;
+
+        if (employeeType === 'Vendedor') {
+          document.getElementById('result-sales').textContent = sales;
+          document.getElementById('result-total-amount').textContent = totalAmount;
+          document.getElementById('result-sales-row').classList.remove('hidden');
+          document.getElementById('result-total-amount-row').classList.remove('hidden');
+        } else {
+          document.getElementById('result-sales-row').classList.add('hidden');
+          document.getElementById('result-total-amount-row').classList.add('hidden');
+        }
+
+        if (employeeType === 'Encargado de turno') {
+          document.getElementById('result-employee-count').textContent = employeeCount;
+          document.getElementById('result-employee-count-row').classList.remove('hidden');
+        } else {
+          document.getElementById('result-employee-count-row').classList.add('hidden');
+        }
+
+        if (employeeType === 'Supervisor general') {
+          document.getElementById('result-location-count').textContent = locationCount;
+          document.getElementById('result-performance-description').textContent = performanceDescription;
+          document.getElementById('result-location-count-row').classList.remove('hidden');
+          document.getElementById('result-performance-description-row').classList.remove('hidden');
+        } else {
+          document.getElementById('result-location-count-row').classList.add('hidden');
+          document.getElementById('result-performance-description-row').classList.add('hidden');
+        }
+
+        document.getElementById('result-shift').textContent = shift;
+
+        document.getElementById('form-container').classList.add('hidden');
+        document.getElementById('result-container').classList.remove('hidden');
+      }
+    });
+  </script>
+</body>
+</html>

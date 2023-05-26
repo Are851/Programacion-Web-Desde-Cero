@@ -1,0 +1,30 @@
+     
+<!DOCTYPE html>
+<html>
+<head>
+     <meta charset="UTF-8">
+  <title>Ejercicio8 de la clase 6 Indtroducción Paginas Web</title>
+  <link rel="stylesheet" href="estilos.css">
+  
+</head>
+<body>
+  <div id="form-container">
+    <form id="employee-form">
+      <div class="input-container">
+        <label for="email">Correo electrónico:</label>
+        <input type="email" id="email" required>
+        <div class="error-message" id="email-error"></div>
+      </div>
+
+      <div class="input-container">
+        <label for="age">Edad:</label>
+        <input type="number" id="age" required min="1">
+        <div class="error-message" id="age-error"></div>
+      </div>
+
+      <button type="submit" id="submit-button" disabled>Submit</button>
+    </form>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
