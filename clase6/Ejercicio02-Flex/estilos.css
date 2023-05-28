@@ -1,0 +1,35 @@
+.principal{
+    display: flex; /* definición del tipo de diseño que también aplicará para los hijos del elemento (leer documentación flex*/
+    border: 2px dashed red; /* borde de lineas punteadas para el contenedor principal*/
+    width: 1100px;/* definimos las dimensioes del contenedor*/
+    height: 600px;
+    flex-direction: column; /* definición de la dirección en que trabajará la 
+    propiedad flex (también se podría usar por defecto que es en fila) */
+    justify-content:space-between; /* se justifica los elementos hijos para que
+    abarquen el total del espacio definido en el elemento, depende del tipo de
+    justificación se comportará diferente */
+}
+
+.caja1{
+    border: 1px solid darkkhaki;
+    background-color: coral;
+    width: 10%;
+    height: 20%;
+}
+
+.caja2{
+    border: 1px solid darkkhaki;
+    background-color: cornflowerblue;
+    width: 10%;
+    height: 20%;
+    /* le damos un margen izquierdo para pocicionarlo al centro del contenedor, no lo posicionamos en 50% que sería el centro porque el elemento ya tiene un ancho del 10% por lo que habría que restarselo para que quede bien centrado */
+    margin-left: 40%;/* igual cre que le erré en el calculo y debería ser 45% xD*/
+}
+
+.caja3{
+    border: 1px solid darkkhaki;
+    background-color: darkseagreen;
+    width: 10%;
+    height: 20%;
+    margin-left: 90%;
+}

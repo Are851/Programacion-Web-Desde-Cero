@@ -7,15 +7,23 @@ body {
   font-family: helvetica;
   background: blue;
   text-align: center;
-  font-size: 100px;
-  margin:10px;
+  font-size: 20px;
+  margin:50px;
 }
 
+.container {
+  display: flex;
+  padding: 10px;
+  height: 100px;
+  font-size: 50px;
+
+  background-color: black;
+}
 
 .container-nav {
   display: flex;
   padding: 10px;
-  height: 50px;
+  height: 100px;
   background-color: black;
 }
 
@@ -24,7 +32,6 @@ body {
   justify-content: space-between;
   width: 100%;
 }
-
 .brand {
   display: flex;
   align-items: center;
