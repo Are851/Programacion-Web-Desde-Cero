@@ -1,0 +1,47 @@
+h1 {
+    color: black;
+    background-color: blue;
+    font-family: arial;
+    font-size: 10px;
+    margin: 100px;
+    border: 1px solid whitesmoke;
+    padding: 10px;
+    }
+
+    body {
+        color: black;
+        background-color: violet;
+        font-family: bold helvetica;
+        font-size: 20px;
+        margin:  50px;
+        border: 1px solid black;
+        padding: 5px;
+    }
+    p{
+      color: pink;
+    background-color: violet;
+    font-family: bold helvetica;
+    font-size: 20px;
+    margin: 50px;
+    border: 1px solid black;
+    padding: 5px;
+    }
+
+    header {
+        color: rgb(31, 179, 130);
+        background-color: violet;
+        font-family: arial narrow;
+        font-size: 20px;
+        width: 50%;
+        border: 1px solid black;
+        margin: auto;
+    }
+
+    footer {
+        color: rgb(39, 208, 59);
+        background-color: violet;
+        font-family: bold Arial;
+        font-size: 20px;
+        margin: 50px;
+        
+    }
